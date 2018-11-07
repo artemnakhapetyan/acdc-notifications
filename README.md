@@ -73,15 +73,15 @@ anyMethod(){
 		});
 	});
 
-	this.
-
-	this.acdcNotificationsService.deleteAllToasts();
+	setTimeout( () => {
+		this.acdcNotificationsService.deleteAllToasts();
+	}, 10000);
 
 }
 
 ```
 
-### 2. Toast methods
+### 3. Toast methods
 ```ts
 
 // 1. toast - creates new toast
