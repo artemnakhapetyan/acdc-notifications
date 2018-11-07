@@ -1,0 +1,26 @@
+{
+  "name": "acdc-notifications",
+  "version": "0.0.1",
+  "license": "MIT",
+  "keywords": [
+    "angular2",
+    "angular 2",
+    "angular4",
+    "angular 4",
+    "angular5",
+    "angular 5",
+    "angular6",
+    "angular 6",
+    "notifications",
+    "toast",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/artemnakhapetyan/acdc-notifications.git"
+  },
+  "peerDependencies": {
+    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+  }
+}

@@ -1,0 +1,136 @@
+
+.acdc-svg{
+  fill: white;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* animations */
+@keyframes acdcHideToastAnimation{
+  0%{
+      opacity: 1;
+      transform: translateX(60px);
+  }
+  25%{
+    opacity: 0.75;
+    transform: translateX(120px);
+  }
+  50%{
+    opacity: 0.5;
+    transform: translateX(180px);
+  }
+  75%{
+    opacity: 0.25;
+    transform: translateX(240px);
+  }
+  100%{
+      display: none;
+      opacity: 0;
+      transform: translateX(300px);
+  }
+}
+
+.acdc-hide-with-animation{
+  animation-name: acdcHideToastAnimation;
+  animation-duration: 500ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+
+@keyframes acdcShowToastAnimation{
+  0%{
+      opacity: 0;
+      transform: translateX(240px);
+  }
+  25%{
+    opacity: 0.25;
+    transform: translateX(180px);
+  }
+  50%{
+    opacity: 0.5;
+    transform: translateX(120px);
+  }
+  75%{
+    opacity: 0.75;
+    transform: translateX(60px);
+  }
+  100%{
+      opacity: 1;
+      transform: translateX(0px);
+  }
+}
+
+.acdc-show-with-animation{
+  animation-name: acdcShowToastAnimation;
+  animation-duration: 500ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+
+
+.acdc-toasts-container{
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 320px;
+  max-height: 500px;
+  overflow-y: auto;
+  z-index: 1000000000;
+  margin: 0px auto;
+}
+
+.acdc-toast-header{
+  width: calc(100% - 20px);
+  height: 20px;
+  overflow-y: auto;
+}
+
+.acdc-toast-close-btn{
+  float: right;
+  cursor: pointer;
+}
+
+.acdc-toast-close-div{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.acdc-toast-content{
+  width: calc(100% - 20px);
+  max-height: calc(100px - 39px);
+  overflow-y: auto;
+}
+
+.acdc-toast{
+  width: 280px;
+  max-height: 100px;
+  background-color: lightslategrey;
+  color: white;
+  padding: 10px;
+  margin: 0px auto;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  box-shadow: 0px 5px 15px grey;
+}
+
+.acdc-mini-toast{
+  max-height: 60px;
+}
+
+.acdc-toast-success{
+  background-color: seagreen;
+}
+
+.acdc-toast-error{
+  background-color: firebrick;
+}
+
+.acdc-toast-warn{
+  background-color: orange;
+}
+
+.acdc-toast-info{
+  background-color: steelblue;
+}
