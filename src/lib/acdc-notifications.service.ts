@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AcdcNotificationsComponent } from './acdc-notifications.component';
 
-import { AcdcToast, AcdcNotificationLevel, AcdcNotificationState } from './acdc-notifications.model';
+import { AcdcToast, AcdcNotificationLevel, AcdcNotificationState, AcdcToastConfig } from './acdc-notifications.model';
 
 @Injectable()
 export class AcdcNotificationsService {
@@ -16,13 +16,13 @@ export class AcdcNotificationsService {
     return 'acdc_' + ( Date.now() + Math.random() );
   }
 
-  private addToast(notificationLevel: AcdcNotificationLevel, title: string, message: string, timeout?: number): string{
+  private addToast(notificationLevel: string, title: string, message: string, timeout?: number): string{
 
     const newToast: AcdcToast = {
       id: this.generateId(),
       title: title,
       message: message,
-      notificationLevel: notificationLevel,
+      notificationLevel: notificationLevel? AcdcNotificationLevel[notificationLevel]: AcdcNotificationLevel.Info,
       timeout: timeout,
       notificationState: AcdcNotificationState.Created
     };
@@ -30,7 +30,7 @@ export class AcdcNotificationsService {
 
     if(timeout){
       setTimeout( () => {
-        this.delete(newToast.id);
+        this.deleteToast(newToast.id);
       }, timeout);
     }
 
@@ -42,79 +42,40 @@ export class AcdcNotificationsService {
     return this.toasts;
   }
 
-  toastSuccess(title: string, message: string, timeout?: number): string{
+  private toastParamsError(){
     return this.addToast(
-      AcdcNotificationLevel.Success,
-      title,
-      message,
-      timeout
+      'Error',
+      'Notifications Component Error',
+      `'message' property is required when calling toast.`
     );
   }
 
-  toastError(title: string, message: string, timeout?: number): string{
+  toast(config: AcdcToastConfig): string{
+    if(!config){
+      this.toastParamsError();
+      return;
+    }
+    if(!config.message){
+      this.toastParamsError();
+      return;
+    }
     return this.addToast(
-      AcdcNotificationLevel.Error,
-      title,
-      message,
-      timeout
+      config.notificationLevel,
+      config.title,
+      config.message,
+      config.timeout
     );
   }
+  
+  deleteAllToasts(){
 
-  toastInfo(title: string, message: string, timeout?: number): string{
-    return this.addToast(
-      AcdcNotificationLevel.Info,
-      title,
-      message,
-      timeout
-    );
+    this.toasts.forEach( toast => {
+      this.deleteToast(toast.id);
+    });
+
   }
 
-  toastWarn(title: string, message: string, timeout?: number): string{
-    return this.addToast(
-      AcdcNotificationLevel.Warn,
-      title,
-      message,
-      timeout
-    );
-  }
-
-  miniToastSuccess(message: string, timeout?: number): string{
-    return this.addToast(
-      AcdcNotificationLevel.Success,
-      null,
-      message,
-      timeout
-    );
-  }
-
-  miniToastError(message: string, timeout?: number): string{
-    return this.addToast(
-      AcdcNotificationLevel.Error,
-      null,
-      message,
-      timeout
-    );
-  }
-
-  miniToastInfo(message: string, timeout?: number): string{
-    return this.addToast(
-      AcdcNotificationLevel.Info,
-      null,
-      message,
-      timeout
-    );
-  }
-
-  miniToastWarn(message: string, timeout?: number): string{
-    return this.addToast(
-      AcdcNotificationLevel.Warn,
-      null,
-      message,
-      timeout
-    );
-  }
-
-  delete(id: string){
+  deleteToast(id: string){
 
     let index = this.toasts.findIndex( item => item.id === id );
     if(index===-1){

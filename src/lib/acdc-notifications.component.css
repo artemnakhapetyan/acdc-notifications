@@ -3,8 +3,9 @@
   fill: white;
   width: 16px;
   height: 16px;
-  cursor: pointer;
 }
+
+
 
 /* animations */
 @keyframes acdcHideToastAnimation{
@@ -81,7 +82,8 @@
 }
 
 .acdc-toast-header{
-  width: calc(100% - 20px);
+  width: calc(100% - 45px);
+  margin-left: 25px;
   height: 20px;
   overflow-y: auto;
 }
@@ -91,6 +93,16 @@
   cursor: pointer;
 }
 
+.acdc-toast-notification-level-icon{
+  margin-right: 5px;
+}
+
+.acdc-toast-notification-level-div{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
 .acdc-toast-close-div{
   position: absolute;
   top: 10px;
@@ -98,9 +110,15 @@
 }
 
 .acdc-toast-content{
-  width: calc(100% - 20px);
+  width: calc(100% - 45px);
+  margin-left: 25px;
   max-height: calc(100px - 39px);
   overflow-y: auto;
+}
+
+.acdc-toast-content-with-title{
+  width: 100%;
+  margin-left: 0px;
 }
 
 .acdc-toast{

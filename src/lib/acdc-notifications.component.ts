@@ -20,7 +20,7 @@ export class AcdcNotificationsComponent implements OnInit {
   }
 
   dismissToast(id: string) {
-    this.acdcNotificationsService.delete(id);
+    this.acdcNotificationsService.deleteToast(id);
   }
 
 }

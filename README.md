@@ -51,15 +51,57 @@ constructor( private acdcNotificationsService: AcdcNotificationsService ) {}
 
 anyMethod(){
 
-	this.acdcNotificationsService.toastWarn('Warn', 'This is just example.');
+	const toastId = this.acdcNotificationsService.toast({
+		title: 'Warn', 
+		message: 'This is just example.',
+		notificationLevel: 'Warn'
+	});
 
-	this.acdcNotificationsService.toastInfo('Info', 'Async call started.', 3000);
+	this.acdcNotificationsService.toast({
+		title: 'Info', 
+		message: 'Async call started.', 
+		timeout: 3000,
+		notificationLevel: 'Info'
+	});
 
 	this.api.anyAsyncMethodCall().subscribe( res => {
 		// some actions
-		this.acdcNotificationsService.toastSuccess('Info', 'Async call ended.', 5000);
+		this.acdcNotificationsService.toast({
+			title: 'Info', 
+			message: 'Async call ended.', 
+			timeout: 5000
+		});
 	});
+
+	this.
+
+	this.acdcNotificationsService.deleteAllToasts();
 
 }
 
 ```
+
+### 2. Toast methods
+```ts
+
+// 1. toast - creates new toast
+/* returns toast uniq id */
+const id: string = this.acdcNotificationsService.toast({
+	/* nullable, if not passed toast will appear without header */
+	title: 'Info', 
+	/* not null, main message text */
+	message: 'Async call started.',
+	/* nullable (toast won't dissapear automaticaly). If positive timeout value applied toast will dissapear automaticaly when time elapsed (milliseconds) */
+	timeout: 3000, 
+	/* nullable (default Info), notification level values - 'Info' (default), 'Success', 'Warn', 'Error'. Toast colors and icons are changed accordingly */
+	notificationLevel: 'Info' 
+}); 
+
+// 2. deleteToast - deletes toast by id
+this.acdcNotificationsService.deleteToast(id); 
+
+// 3. deleteAllToasts - deletes all toasts
+this.acdcNotificationsService.deleteAllToasts();
+
+```
+

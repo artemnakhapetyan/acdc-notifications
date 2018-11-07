@@ -10,6 +10,13 @@ export enum AcdcNotificationState {
   Dismissed = "Dismissed"
 }
 
+export interface AcdcToastConfig{
+  title?: string;
+  message: string;
+  timeout?: number;
+  notificationLevel?: string
+}
+
 export interface AcdcToast{
   id: string;
   title?: string;
