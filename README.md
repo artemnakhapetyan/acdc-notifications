@@ -9,6 +9,7 @@ See [Demo](https://angular-mp2pcl.stackblitz.io)
 ## Latest updates
 
 *7 November 2018* Initial version
+*8 November 2018* Toasts container horizontal scroll fix
 <br/>
 
 
