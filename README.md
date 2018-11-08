@@ -50,19 +50,19 @@ const notificationsConfig = {
       iconsColor: 'white'
     },
     info: {
-	  iconsColor: 'white',
+	  titleColor: 'white',
 	  messageColor: 'white',
       backgroundColor: 'steelblue',
       iconsColor: 'white'
     },
     error: {
-	  iconsColor: 'white',
+	  titleColor: 'white',
 	  messageColor: 'white',
       backgroundColor: 'firebrick',
       iconsColor: 'white'
     },
     success: {
-	  iconsColor: 'white',
+	  titleColor: 'white',
 	  messageColor: 'white',
       backgroundColor: 'seagreen',
       iconsColor: 'white'
