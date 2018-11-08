@@ -9,7 +9,10 @@ See [Demo](https://angular-mp2pcl.stackblitz.io)
 ## Latest updates
 
 *7 November 2018* Initial version
+<br/>
 *8 November 2018* Toasts container horizontal scroll fix
+<br/>
+*8 November 2018* Initial config (colors for toast elements can be configured)
 <br/>
 
 
@@ -27,9 +30,53 @@ npm install acdc-notifications --save
 
 import { AcdcNotificationsModule } from 'acdc-notifications';
 
-imports: [
-    AcdcNotificationsModule.forRoot()
-]
+// some code
+
+// notifications initial configurations (if not provided default values applied)
+// all the properties are optional
+const notificationsConfig = {
+  // toast configs go here (planning to add in package other notification types)
+  toast:{
+	// general properties applied to all toast notification level types (info, error, warn, success)
+    titleColor: 'white',
+    messageColor: 'white',
+    backgroundColor: 'white',
+	iconsColor: 'white',
+	// properties specific to notification level (have higher priority than general properties)
+    warn: {
+      titleColor: 'white',
+      messageColor: 'white',
+      backgroundColor: 'orange',
+      iconsColor: 'white'
+    },
+    info: {
+	  iconsColor: 'white',
+	  messageColor: 'white',
+      backgroundColor: 'steelblue',
+      iconsColor: 'white'
+    },
+    error: {
+	  iconsColor: 'white',
+	  messageColor: 'white',
+      backgroundColor: 'firebrick',
+      iconsColor: 'white'
+    },
+    success: {
+	  iconsColor: 'white',
+	  messageColor: 'white',
+      backgroundColor: 'seagreen',
+      iconsColor: 'white'
+    }
+  }
+};
+
+@NgModule({
+	// some code
+	imports: [
+		AcdcNotificationsModule.forRoot(notificationsConfig)
+	]
+	// some code
+})
 
 ```
 
@@ -66,7 +113,7 @@ anyMethod(){
 	});
 
 	this.api.anyAsyncMethodCall().subscribe( res => {
-		// some actions
+		// some code
 		this.acdcNotificationsService.toast({
 			title: 'Info', 
 			message: 'Async call ended.', 

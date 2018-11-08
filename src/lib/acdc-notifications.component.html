@@ -1,48 +1,150 @@
-
 <div class="acdc-toasts-container">
-  <div class="acdc-toast"
-       [class.acdc-show-with-animation]="toast.notificationState==='Created'"
-       [class.acdc-toast-success]="toast.notificationLevel==='Success'"
-       [class.acdc-toast-info]="toast.notificationLevel==='Info'"
-       [class.acdc-toast-warn]="toast.notificationLevel==='Warn'"
-       [class.acdc-toast-error]="toast.notificationLevel==='Error'"
-       [class.acdc-hide-with-animation]="toast.notificationState==='Dismissed'"
-       *ngFor="let toast of toasts"
-       [class.acdc-mini-toast]="!toast.title">
+  <ng-container *ngFor="let toast of toasts">
+    
+      <!-- warn toast -->
+      <div *ngIf="toast.notificationLevel==='Warn'"
+          class="acdc-toast acdc-toast-warn"
+          [class.acdc-show-with-animation]="toast.notificationState==='Created'"
+          [class.acdc-hide-with-animation]="toast.notificationState==='Dismissed'"
+          [class.acdc-mini-toast]="!toast.title"
+          [style.background-color]="acdcConfig.toast.warn.backgroundColor">
+        <div class="acdc-toast-notification-level-div">
+          <svg class="acdc-svg acdc-toast-notification-level-icon"
+               [style.fill]="acdcConfig.toast.warn.iconsColor"
+               viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M16 2.899l13.409 26.726h-26.819l13.409-26.726zM16 0c-0.69 0-1.379 0.465-1.903 1.395l-13.659 27.222c-1.046 1.86-0.156 3.383 1.978 3.383h27.166c2.134 0 3.025-1.522 1.978-3.383h0l-13.659-27.222c-0.523-0.93-1.213-1.395-1.903-1.395v0z"></path>
+            <path d="M18 26c0 1.105-0.895 2-2 2s-2-0.895-2-2c0-1.105 0.895-2 2-2s2 0.895 2 2z"></path>
+            <path d="M16 22c-1.105 0-2-0.895-2-2v-6c0-1.105 0.895-2 2-2s2 0.895 2 2v6c0 1.105-0.895 2-2 2z"></path>
+          </svg>
+        </div>
 
-    <div class="acdc-toast-notification-level-div">
-      <svg class="acdc-svg acdc-toast-notification-level-icon" *ngIf="toast.notificationLevel==='Warn'" viewBox="0 0 32 32" aria-hidden="true">
-        <path d="M16 2.899l13.409 26.726h-26.819l13.409-26.726zM16 0c-0.69 0-1.379 0.465-1.903 1.395l-13.659 27.222c-1.046 1.86-0.156 3.383 1.978 3.383h27.166c2.134 0 3.025-1.522 1.978-3.383h0l-13.659-27.222c-0.523-0.93-1.213-1.395-1.903-1.395v0z"></path>
-        <path d="M18 26c0 1.105-0.895 2-2 2s-2-0.895-2-2c0-1.105 0.895-2 2-2s2 0.895 2 2z"></path>
-        <path d="M16 22c-1.105 0-2-0.895-2-2v-6c0-1.105 0.895-2 2-2s2 0.895 2 2v6c0 1.105-0.895 2-2 2z"></path>
-      </svg>
-      <svg class="acdc-svg acdc-toast-notification-level-icon" *ngIf="toast.notificationLevel==='Info'" viewBox="0 0 32 32" aria-hidden="true">
-          <path d="M14 9.5c0-0.825 0.675-1.5 1.5-1.5h1c0.825 0 1.5 0.675 1.5 1.5v1c0 0.825-0.675 1.5-1.5 1.5h-1c-0.825 0-1.5-0.675-1.5-1.5v-1z"></path>
-          <path d="M20 24h-8v-2h2v-6h-2v-2h6v8h2z"></path>
-          <path d="M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 29c-7.18 0-13-5.82-13-13s5.82-13 13-13 13 5.82 13 13-5.82 13-13 13z"></path>
-      </svg>
-      <svg class="acdc-svg acdc-toast-notification-level-icon"  *ngIf="toast.notificationLevel==='Success'" viewBox="0 0 32 32" aria-hidden="true">
-          <path d="M27 4l-15 15-7-7-5 5 12 12 20-20z" />
-      </svg>
-      <svg class="acdc-svg acdc-toast-notification-level-icon" *ngIf="toast.notificationLevel==='Error'" viewBox="0 0 32 32" aria-hidden="true">
-          <path d="M16 3c-3.472 0-6.737 1.352-9.192 3.808s-3.808 5.72-3.808 9.192c0 3.472 1.352 6.737 3.808 9.192s5.72 3.808 9.192 3.808c3.472 0 6.737-1.352 9.192-3.808s3.808-5.72 3.808-9.192c0-3.472-1.352-6.737-3.808-9.192s-5.72-3.808-9.192-3.808zM16 0v0c8.837 0 16 7.163 16 16s-7.163 16-16 16c-8.837 0-16-7.163-16-16s7.163-16 16-16zM14 22h4v4h-4zM14 6h4v12h-4z"></path>
-      </svg>
-    </div>
+        <div class="acdc-toast-header" *ngIf="toast.title" [style.color]="acdcConfig.toast.warn.titleColor">
+          {{toast.title}}
+        </div>
+        <hr *ngIf="toast.title" class="acdc-hr">
+        <div class="acdc-toast-content" 
+            [class.acdc-toast-content-with-title]="toast.title"
+            [style.color]="acdcConfig.toast.warn.messageColor">
+          {{toast.message}}
+        </div>
 
-    <div class="acdc-toast-header" *ngIf="toast.title">
-      {{toast.title}}
-    </div>
-    <hr *ngIf="toast.title">
-    <div class="acdc-toast-content" [class.acdc-toast-content-with-title]="toast.title">
-      {{toast.message}} 
-    </div>
+        <div class="acdc-toast-close-div">
+          <svg (click)="dismissToast(toast.id)" 
+               class="acdc-svg acdc-toast-close-btn"
+               [style.fill]="acdcConfig.toast.warn.iconsColor" 
+               viewBox="0 0 1024 900" aria-hidden="true">
+            <path d="M1014.662 137.34c-0.004 0.004-0.008 0.008-0.012 0.010l-310.644 310.65 310.644 310.65c0.004 0.004 0.008 0.006 0.012 0.010 3.344 3.346 5.762 7.254 7.312 11.416 4.246 11.376 1.824 24.682-7.324 33.83l-146.746 146.746c-9.148 9.146-22.45 11.566-33.828 7.32-4.16-1.55-8.070-3.968-11.418-7.31 0-0.004-0.004-0.006-0.008-0.010l-310.648-310.652-310.648 310.65c-0.004 0.004-0.006 0.006-0.010 0.010-3.346 3.342-7.254 5.76-11.414 7.31-11.38 4.248-24.682 1.826-33.83-7.32l-146.748-146.748c-9.148-9.148-11.568-22.452-7.322-33.828 1.552-4.16 3.97-8.072 7.312-11.416 0.004-0.002 0.006-0.006 0.010-0.010l310.65-310.648-310.65-310.652c-0.002-0.004-0.006-0.006-0.008-0.010-3.342-3.346-5.76-7.254-7.314-11.414-4.248-11.376-1.826-24.682 7.322-33.83l146.748-146.746c9.15-9.148 22.452-11.568 33.83-7.322 4.16 1.552 8.070 3.97 11.416 7.312 0.002 0.004 0.006 0.006 0.010 0.010l310.648 310.65 310.648-310.65c0.004-0.002 0.008-0.006 0.012-0.008 3.348-3.344 7.254-5.762 11.414-7.314 11.378-4.246 24.684-1.826 33.828 7.322l146.746 146.748c9.148 9.148 11.57 22.454 7.324 33.83-1.552 4.16-3.97 8.068-7.314 11.414z" />
+          </svg>
+        </div>
+      </div>
 
-    <div class="acdc-toast-close-div">
-      <svg (click)="dismissToast(toast.id)" class="acdc-svg acdc-toast-close-btn" viewBox="0 0 1024 900" aria-hidden="true">
-        <path d="M1014.662 137.34c-0.004 0.004-0.008 0.008-0.012 0.010l-310.644 310.65 310.644 310.65c0.004 0.004 0.008 0.006 0.012 0.010 3.344 3.346 5.762 7.254 7.312 11.416 4.246 11.376 1.824 24.682-7.324 33.83l-146.746 146.746c-9.148 9.146-22.45 11.566-33.828 7.32-4.16-1.55-8.070-3.968-11.418-7.31 0-0.004-0.004-0.006-0.008-0.010l-310.648-310.652-310.648 310.65c-0.004 0.004-0.006 0.006-0.010 0.010-3.346 3.342-7.254 5.76-11.414 7.31-11.38 4.248-24.682 1.826-33.83-7.32l-146.748-146.748c-9.148-9.148-11.568-22.452-7.322-33.828 1.552-4.16 3.97-8.072 7.312-11.416 0.004-0.002 0.006-0.006 0.010-0.010l310.65-310.648-310.65-310.652c-0.002-0.004-0.006-0.006-0.008-0.010-3.342-3.346-5.76-7.254-7.314-11.414-4.248-11.376-1.826-24.682 7.322-33.83l146.748-146.746c9.15-9.148 22.452-11.568 33.83-7.322 4.16 1.552 8.070 3.97 11.416 7.312 0.002 0.004 0.006 0.006 0.010 0.010l310.648 310.65 310.648-310.65c0.004-0.002 0.008-0.006 0.012-0.008 3.348-3.344 7.254-5.762 11.414-7.314 11.378-4.246 24.684-1.826 33.828 7.322l146.746 146.748c9.148 9.148 11.57 22.454 7.324 33.83-1.552 4.16-3.97 8.068-7.314 11.414z" />
-      </svg>
-    </div>
+      <!-- info toast -->
+      <div *ngIf="toast.notificationLevel==='Info'"
+          class="acdc-toast acdc-toast-info"
+          [class.acdc-show-with-animation]="toast.notificationState==='Created'"
+          [class.acdc-hide-with-animation]="toast.notificationState==='Dismissed'"
+          [class.acdc-mini-toast]="!toast.title"
+          [style.background-color]="acdcConfig.toast.info.backgroundColor">
+        <div class="acdc-toast-notification-level-div">
+          <svg class="acdc-svg acdc-toast-notification-level-icon"
+               [style.fill]="acdcConfig.toast.info.iconsColor"
+               viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M14 9.5c0-0.825 0.675-1.5 1.5-1.5h1c0.825 0 1.5 0.675 1.5 1.5v1c0 0.825-0.675 1.5-1.5 1.5h-1c-0.825 0-1.5-0.675-1.5-1.5v-1z"></path>
+            <path d="M20 24h-8v-2h2v-6h-2v-2h6v8h2z"></path>
+            <path d="M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 29c-7.18 0-13-5.82-13-13s5.82-13 13-13 13 5.82 13 13-5.82 13-13 13z"></path>
+          </svg>
+        </div>
 
-  </div>
+        <div class="acdc-toast-header" *ngIf="toast.title" [style.color]="acdcConfig.toast.info.titleColor">
+          {{toast.title}}
+        </div>
+        <hr *ngIf="toast.title" class="acdc-hr">
+        <div class="acdc-toast-content" 
+            [class.acdc-toast-content-with-title]="toast.title"
+            [style.color]="acdcConfig.toast.info.messageColor">
+          {{toast.message}}
+        </div>
+
+        <div class="acdc-toast-close-div">
+          <svg (click)="dismissToast(toast.id)" 
+               class="acdc-svg acdc-toast-close-btn" 
+               [style.fill]="acdcConfig.toast.info.iconsColor"
+               viewBox="0 0 1024 900" aria-hidden="true">
+            <path d="M1014.662 137.34c-0.004 0.004-0.008 0.008-0.012 0.010l-310.644 310.65 310.644 310.65c0.004 0.004 0.008 0.006 0.012 0.010 3.344 3.346 5.762 7.254 7.312 11.416 4.246 11.376 1.824 24.682-7.324 33.83l-146.746 146.746c-9.148 9.146-22.45 11.566-33.828 7.32-4.16-1.55-8.070-3.968-11.418-7.31 0-0.004-0.004-0.006-0.008-0.010l-310.648-310.652-310.648 310.65c-0.004 0.004-0.006 0.006-0.010 0.010-3.346 3.342-7.254 5.76-11.414 7.31-11.38 4.248-24.682 1.826-33.83-7.32l-146.748-146.748c-9.148-9.148-11.568-22.452-7.322-33.828 1.552-4.16 3.97-8.072 7.312-11.416 0.004-0.002 0.006-0.006 0.010-0.010l310.65-310.648-310.65-310.652c-0.002-0.004-0.006-0.006-0.008-0.010-3.342-3.346-5.76-7.254-7.314-11.414-4.248-11.376-1.826-24.682 7.322-33.83l146.748-146.746c9.15-9.148 22.452-11.568 33.83-7.322 4.16 1.552 8.070 3.97 11.416 7.312 0.002 0.004 0.006 0.006 0.010 0.010l310.648 310.65 310.648-310.65c0.004-0.002 0.008-0.006 0.012-0.008 3.348-3.344 7.254-5.762 11.414-7.314 11.378-4.246 24.684-1.826 33.828 7.322l146.746 146.748c9.148 9.148 11.57 22.454 7.324 33.83-1.552 4.16-3.97 8.068-7.314 11.414z" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- success toast -->
+      <div *ngIf="toast.notificationLevel==='Success'"
+          class="acdc-toast acdc-toast-success"
+          [class.acdc-show-with-animation]="toast.notificationState==='Created'"
+          [class.acdc-hide-with-animation]="toast.notificationState==='Dismissed'"
+          [class.acdc-mini-toast]="!toast.title"
+          [style.background-color]="acdcConfig.toast.success.backgroundColor">
+        <div class="acdc-toast-notification-level-div">
+          <svg class="acdc-svg acdc-toast-notification-level-icon"
+               [style.fill]="acdcConfig.toast.success.iconsColor"
+               viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M27 4l-15 15-7-7-5 5 12 12 20-20z" />
+          </svg>
+        </div>
+
+        <div class="acdc-toast-header" *ngIf="toast.title" [style.color]="acdcConfig.toast.success.titleColor">
+          {{toast.title}}
+        </div>
+        <hr class="acdc-hr" *ngIf="toast.title">
+        <div class="acdc-toast-content" 
+            [class.acdc-toast-content-with-title]="toast.title"
+            [style.color]="acdcConfig.toast.success.messageColor">
+          {{toast.message}}
+        </div>
+
+        <div class="acdc-toast-close-div">
+          <svg (click)="dismissToast(toast.id)" 
+               class="acdc-svg acdc-toast-close-btn" 
+               [style.fill]="acdcConfig.toast.success.iconsColor"
+               viewBox="0 0 1024 900" aria-hidden="true">
+            <path d="M1014.662 137.34c-0.004 0.004-0.008 0.008-0.012 0.010l-310.644 310.65 310.644 310.65c0.004 0.004 0.008 0.006 0.012 0.010 3.344 3.346 5.762 7.254 7.312 11.416 4.246 11.376 1.824 24.682-7.324 33.83l-146.746 146.746c-9.148 9.146-22.45 11.566-33.828 7.32-4.16-1.55-8.070-3.968-11.418-7.31 0-0.004-0.004-0.006-0.008-0.010l-310.648-310.652-310.648 310.65c-0.004 0.004-0.006 0.006-0.010 0.010-3.346 3.342-7.254 5.76-11.414 7.31-11.38 4.248-24.682 1.826-33.83-7.32l-146.748-146.748c-9.148-9.148-11.568-22.452-7.322-33.828 1.552-4.16 3.97-8.072 7.312-11.416 0.004-0.002 0.006-0.006 0.010-0.010l310.65-310.648-310.65-310.652c-0.002-0.004-0.006-0.006-0.008-0.010-3.342-3.346-5.76-7.254-7.314-11.414-4.248-11.376-1.826-24.682 7.322-33.83l146.748-146.746c9.15-9.148 22.452-11.568 33.83-7.322 4.16 1.552 8.070 3.97 11.416 7.312 0.002 0.004 0.006 0.006 0.010 0.010l310.648 310.65 310.648-310.65c0.004-0.002 0.008-0.006 0.012-0.008 3.348-3.344 7.254-5.762 11.414-7.314 11.378-4.246 24.684-1.826 33.828 7.322l146.746 146.748c9.148 9.148 11.57 22.454 7.324 33.83-1.552 4.16-3.97 8.068-7.314 11.414z" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- error toast -->
+      <div *ngIf="toast.notificationLevel==='Error'"
+          class="acdc-toast acdc-toast-error"
+          [class.acdc-show-with-animation]="toast.notificationState==='Created'"
+          [class.acdc-hide-with-animation]="toast.notificationState==='Dismissed'"
+          [class.acdc-mini-toast]="!toast.title"
+          [style.background-color]="acdcConfig.toast.error.backgroundColor">
+        <div class="acdc-toast-notification-level-div">
+          <svg class="acdc-svg acdc-toast-notification-level-icon"
+               [style.fill]="acdcConfig.toast.error.iconsColor"
+               viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M16 3c-3.472 0-6.737 1.352-9.192 3.808s-3.808 5.72-3.808 9.192c0 3.472 1.352 6.737 3.808 9.192s5.72 3.808 9.192 3.808c3.472 0 6.737-1.352 9.192-3.808s3.808-5.72 3.808-9.192c0-3.472-1.352-6.737-3.808-9.192s-5.72-3.808-9.192-3.808zM16 0v0c8.837 0 16 7.163 16 16s-7.163 16-16 16c-8.837 0-16-7.163-16-16s7.163-16 16-16zM14 22h4v4h-4zM14 6h4v12h-4z"></path>
+          </svg>
+        </div>
+
+        <div class="acdc-toast-header" *ngIf="toast.title" [style.color]="acdcConfig.toast.error.titleColor">
+          {{toast.title}}
+        </div>
+        <hr *ngIf="toast.title" class="acdc-hr">
+        <div class="acdc-toast-content" 
+            [class.acdc-toast-content-with-title]="toast.title"
+            [style.color]="acdcConfig.toast.error.messageColor">
+          {{toast.message}}
+        </div>
+
+        <div class="acdc-toast-close-div">
+          <svg (click)="dismissToast(toast.id)" 
+               class="acdc-svg acdc-toast-close-btn" 
+               [style.fill]="acdcConfig.toast.error.iconsColor"
+               viewBox="0 0 1024 900" aria-hidden="true">
+            <path d="M1014.662 137.34c-0.004 0.004-0.008 0.008-0.012 0.010l-310.644 310.65 310.644 310.65c0.004 0.004 0.008 0.006 0.012 0.010 3.344 3.346 5.762 7.254 7.312 11.416 4.246 11.376 1.824 24.682-7.324 33.83l-146.746 146.746c-9.148 9.146-22.45 11.566-33.828 7.32-4.16-1.55-8.070-3.968-11.418-7.31 0-0.004-0.004-0.006-0.008-0.010l-310.648-310.652-310.648 310.65c-0.004 0.004-0.006 0.006-0.010 0.010-3.346 3.342-7.254 5.76-11.414 7.31-11.38 4.248-24.682 1.826-33.83-7.32l-146.748-146.748c-9.148-9.148-11.568-22.452-7.322-33.828 1.552-4.16 3.97-8.072 7.312-11.416 0.004-0.002 0.006-0.006 0.010-0.010l310.65-310.648-310.65-310.652c-0.002-0.004-0.006-0.006-0.008-0.010-3.342-3.346-5.76-7.254-7.314-11.414-4.248-11.376-1.826-24.682 7.322-33.83l146.748-146.746c9.15-9.148 22.452-11.568 33.83-7.322 4.16 1.552 8.070 3.97 11.416 7.312 0.002 0.004 0.006 0.006 0.010 0.010l310.648 310.65 310.648-310.65c0.004-0.002 0.008-0.006 0.012-0.008 3.348-3.344 7.254-5.762 11.414-7.314 11.378-4.246 24.684-1.826 33.828 7.322l146.746 146.748c9.148 9.148 11.57 22.454 7.324 33.83-1.552 4.16-3.97 8.068-7.314 11.414z" />
+          </svg>
+        </div>
+      </div>
+
+  </ng-container>
+
 </div>
-

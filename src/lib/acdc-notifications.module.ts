@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AcdcNotificationsComponent } from './acdc-notifications.component';
 import { AcdcNotificationsService } from './acdc-notifications.service';
+import { AcdcNotifcationsDefaultConfig } from './acdc-notifications.model';
 
 @NgModule({
   imports: [
@@ -12,10 +13,10 @@ import { AcdcNotificationsService } from './acdc-notifications.service';
   exports: [AcdcNotificationsComponent]
 })
 export class AcdcNotificationsModule { 
-  static forRoot(): ModuleWithProviders {
+  static forRoot(defaultConfig?: AcdcNotifcationsDefaultConfig): ModuleWithProviders {
       return {
         ngModule: AcdcNotificationsModule,
-        providers: [AcdcNotificationsService]
+        providers: [AcdcNotificationsService, {provide: AcdcNotifcationsDefaultConfig, useValue: defaultConfig}]
       }
   }
 }
