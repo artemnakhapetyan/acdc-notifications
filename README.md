@@ -3,7 +3,7 @@
 
 No additional dependecies like bootsrap or material or any other ui libs required
 
-Angular versions suppor - 2,4,5,6,7+
+Angular versions support - 2,4,5,6,7+
 
 See [Demo](https://angular-mp2pcl.stackblitz.io)
 

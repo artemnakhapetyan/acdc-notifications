@@ -1,6 +1,6 @@
 {
   "name": "acdc-notifications",
-  "version": "0.0.7",
+  "version": "1.0.0",
   "license": "MIT",
   "keywords": [
     "angular2",
@@ -22,7 +22,7 @@
     "url": "https://github.com/artemnakhapetyan/acdc-notifications.git"
   },
   "peerDependencies": {
-    "@angular/common": "^2.0.0-rc.0 || ^2.0.0",
-    "@angular/core": "^2.0.0-rc.0 || ^2.0.0"
+    "@angular/common": ">=2.0.0",
+    "@angular/core": ">=2.0.0"
   }
 }
