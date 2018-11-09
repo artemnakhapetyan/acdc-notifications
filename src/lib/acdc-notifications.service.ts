@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AcdcNotificationsComponent } from './acdc-notifications.component';
 
-import { AcdcToast, AcdcNotificationLevel, AcdcNotificationState, AcdcToastConfig } from './acdc-notifications.model';
+import { AcdcToast, AcdcNotifcationsDefaultConfig, AcdcNotificationLevel, AcdcNotificationState, AcdcToastConfig } from './acdc-notifications.model';
 
 @Injectable()
 export class AcdcNotificationsService {
@@ -10,7 +9,11 @@ export class AcdcNotificationsService {
 
   private toasts: AcdcToast[] = [];
 
-  constructor() { }
+  private acdcConfig: AcdcNotifcationsDefaultConfig;
+
+  constructor(private defaultConfig: AcdcNotifcationsDefaultConfig) {
+    this.acdcConfig = defaultConfig;
+  }
 
   private generateId(): string{
     return 'acdc_' + ( Date.now() + Math.random() );
@@ -26,7 +29,14 @@ export class AcdcNotificationsService {
       timeout: timeout,
       notificationState: AcdcNotificationState.Created
     };
-    this.toasts.push(newToast);
+
+    if(this.acdcConfig && this.acdcConfig.toast && this.acdcConfig.toast.addToTop){
+      this.toasts.unshift(newToast);
+    }else{
+      this.toasts.push(newToast);
+    }
+
+    // should scroll toasts container to bottom if new toast is being added to bottom
 
     if(timeout){
       setTimeout( () => {

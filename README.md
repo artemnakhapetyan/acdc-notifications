@@ -1,7 +1,9 @@
 
-# Notifications component for angular 6 (toasts)
+# Notifications component for angular (toasts)
 
 No additional dependecies like bootsrap or material or any other ui libs required
+
+Angular versions suppor - 2,4,5,6,7+
 
 See [Demo](https://angular-mp2pcl.stackblitz.io)
 
@@ -13,6 +15,8 @@ See [Demo](https://angular-mp2pcl.stackblitz.io)
 *8 November 2018* Toasts container horizontal scroll fix
 <br/>
 *8 November 2018* Initial config (colors for toast elements can be configured)
+<br/>
+*9 November 2018* Tested with angular 7 version. New configs (addToTop, zIndex)
 <br/>
 
 
@@ -38,10 +42,12 @@ const notificationsConfig = {
   // toast configs go here (planning to add in package other notification types)
   toast:{
 	// general properties applied to all toast notification level types (info, error, warn, success)
-    titleColor: 'white',
-    messageColor: 'white',
-    backgroundColor: 'white',
-	iconsColor: 'white',
+	addToTop: true, // new toast goes on the top of existing ones or to the bottom
+    zIndex: 1000000001, // toast container z-index
+    titleColor: 'white', // toast title color
+    messageColor: 'white', // toast message color
+    backgroundColor: 'white', // toast background color
+	iconsColor: 'white', // toast icons color
 	// properties specific to notification level (have higher priority than general properties)
     warn: {
       titleColor: 'white',

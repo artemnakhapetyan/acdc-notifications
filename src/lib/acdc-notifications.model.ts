@@ -26,21 +26,13 @@ export class AcdcToastsDefaultConfig{
   messageColor?: string;
   backgroundColor?: string;
   iconsColor?: string;
+  addToTop?: boolean;
+  //width?: number;
+  zIndex?: number;
 }
 
 export class AcdcNotifcationsDefaultConfig{
   toast?: AcdcToastsDefaultConfig;
-  /*toastSuccessColor?: string;
-  toastErrorColor?: string;
-  toastWarnColor?: string;
-  toastInfoColor?: string;
-  toastSuccessIconTplHtml?: string;
-  toastErrorIconTplHtml?: string;
-  toastWarnIconTplHtml?: string;
-  toastInfoIconTplHtml?: string;
-  toastWidth?: number;
-  toastMaxWidth?: number;
-  toastMaxHeight?: number;*/
 }
 
 export interface AcdcToastConfig{

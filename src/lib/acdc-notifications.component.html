@@ -1,4 +1,5 @@
-<div class="acdc-toasts-container">
+<div class="acdc-toasts-container" 
+     [style.z-index]="acdcConfig.toast.zIndex? acdcConfig.toast.zIndex: 1000000000">
   <ng-container *ngFor="let toast of toasts">
     
       <!-- warn toast -->

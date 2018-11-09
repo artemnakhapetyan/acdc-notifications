@@ -77,7 +77,6 @@
   width: 320px;
   max-height: 500px;
   overflow-y: auto;
-  z-index: 1000000000;
   margin: 0px auto;
   overflow-x: hidden;
 }
