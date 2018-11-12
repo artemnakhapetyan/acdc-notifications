@@ -1,5 +1,6 @@
 <div class="acdc-toasts-container" 
-     [style.z-index]="acdcConfig.toast.zIndex? acdcConfig.toast.zIndex: 1000000000">
+     [style.z-index]="acdcConfig.toast.zIndex? acdcConfig.toast.zIndex: 1000000000"
+     [style.width]="acdcConfig.toast.width? acdcConfig.toast.width: '320px'">
   <ng-container *ngFor="let toast of toasts">
     
       <!-- warn toast -->
@@ -19,13 +20,18 @@
           </svg>
         </div>
 
-        <div class="acdc-toast-header" *ngIf="toast.title" [style.color]="acdcConfig.toast.warn.titleColor">
+        <div class="acdc-toast-header" *ngIf="toast.title" 
+             [style.color]="acdcConfig.toast.warn.titleColor"
+             [style.font-size]="acdcConfig.toast.titleFontSize? acdcConfig.toast.titleFontSize: 'inherit'"
+             [style.font-family]="acdcConfig.toast.titleFontFamily? acdcConfig.toast.titleFontFamily: 'inherit'">
           {{toast.title}}
         </div>
         <hr *ngIf="toast.title" class="acdc-hr">
         <div class="acdc-toast-content" 
             [class.acdc-toast-content-with-title]="toast.title"
-            [style.color]="acdcConfig.toast.warn.messageColor">
+            [style.color]="acdcConfig.toast.warn.messageColor"
+            [style.font-size]="acdcConfig.toast.messageFontSize? acdcConfig.toast.messageFontSize: 'inherit'"
+            [style.font-family]="acdcConfig.toast.messageFontFamily? acdcConfig.toast.messageFontFamily: 'inherit'">
           {{toast.message}}
         </div>
 
@@ -56,13 +62,18 @@
           </svg>
         </div>
 
-        <div class="acdc-toast-header" *ngIf="toast.title" [style.color]="acdcConfig.toast.info.titleColor">
+        <div class="acdc-toast-header" *ngIf="toast.title" 
+             [style.color]="acdcConfig.toast.info.titleColor"
+             [style.font-size]="acdcConfig.toast.titleFontSize? acdcConfig.toast.titleFontSize: 'inherit'"
+             [style.font-family]="acdcConfig.toast.titleFontFamily? acdcConfig.toast.titleFontFamily: 'inherit'">
           {{toast.title}}
         </div>
         <hr *ngIf="toast.title" class="acdc-hr">
         <div class="acdc-toast-content" 
             [class.acdc-toast-content-with-title]="toast.title"
-            [style.color]="acdcConfig.toast.info.messageColor">
+            [style.color]="acdcConfig.toast.info.messageColor"
+            [style.font-size]="acdcConfig.toast.messageFontSize? acdcConfig.toast.messageFontSize: 'inherit'"
+            [style.font-family]="acdcConfig.toast.messageFontFamily? acdcConfig.toast.messageFontFamily: 'inherit'">
           {{toast.message}}
         </div>
 
@@ -91,13 +102,18 @@
           </svg>
         </div>
 
-        <div class="acdc-toast-header" *ngIf="toast.title" [style.color]="acdcConfig.toast.success.titleColor">
+        <div class="acdc-toast-header" *ngIf="toast.title" 
+             [style.color]="acdcConfig.toast.success.titleColor"
+             [style.font-size]="acdcConfig.toast.titleFontSize? acdcConfig.toast.titleFontSize: 'inherit'"
+             [style.font-family]="acdcConfig.toast.titleFontFamily? acdcConfig.toast.titleFontFamily: 'inherit'">
           {{toast.title}}
         </div>
         <hr class="acdc-hr" *ngIf="toast.title">
         <div class="acdc-toast-content" 
             [class.acdc-toast-content-with-title]="toast.title"
-            [style.color]="acdcConfig.toast.success.messageColor">
+            [style.color]="acdcConfig.toast.success.messageColor"
+            [style.font-size]="acdcConfig.toast.messageFontSize? acdcConfig.toast.messageFontSize: 'inherit'"
+            [style.font-family]="acdcConfig.toast.messageFontFamily? acdcConfig.toast.messageFontFamily: 'inherit'">
           {{toast.message}}
         </div>
 
@@ -126,13 +142,18 @@
           </svg>
         </div>
 
-        <div class="acdc-toast-header" *ngIf="toast.title" [style.color]="acdcConfig.toast.error.titleColor">
+        <div class="acdc-toast-header" *ngIf="toast.title" 
+             [style.color]="acdcConfig.toast.error.titleColor"
+             [style.font-size]="acdcConfig.toast.titleFontSize? acdcConfig.toast.titleFontSize: 'inherit'"
+             [style.font-family]="acdcConfig.toast.titleFontFamily? acdcConfig.toast.titleFontFamily: 'inherit'">
           {{toast.title}}
         </div>
         <hr *ngIf="toast.title" class="acdc-hr">
         <div class="acdc-toast-content" 
             [class.acdc-toast-content-with-title]="toast.title"
-            [style.color]="acdcConfig.toast.error.messageColor">
+            [style.color]="acdcConfig.toast.error.messageColor"
+            [style.font-size]="acdcConfig.toast.messageFontSize? acdcConfig.toast.messageFontSize: 'inherit'"
+            [style.font-family]="acdcConfig.toast.messageFontFamily? acdcConfig.toast.messageFontFamily: 'inherit'">
           {{toast.message}}
         </div>
 

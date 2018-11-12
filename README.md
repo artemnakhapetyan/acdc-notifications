@@ -18,7 +18,8 @@ See [Demo](https://angular-mp2pcl.stackblitz.io)
 <br/>
 *9 November 2018* Tested with angular 7 version. New configs (addToTop, zIndex)
 <br/>
-
+*12 November 2018* Toast vertical overflow fix. New configs (toast width, font configs like size and font family)
+<br/>
 
 ## Install
 
@@ -32,18 +33,24 @@ npm install acdc-notifications --save
 ### 2. Import acdc notifications module in your project's root module app.module.ts:
 ```ts
 
-import { AcdcNotificationsModule } from 'acdc-notifications';
+import { AcdcNotificationsModule, AcdcNotifcationsDefaultConfig } from 'acdc-notifications';
 
 // some code
 
 // notifications initial configurations (if not provided default values applied)
 // all the properties are optional
-const notificationsConfig = {
+const notificationsConfig: AcdcNotifcationsDefaultConfig = {
   // toast configs go here (planning to add in package other notification types)
   toast:{
 	// general properties applied to all toast notification level types (info, error, warn, success)
 	addToTop: true, // new toast goes on the top of existing ones or to the bottom
-    zIndex: 1000000001, // toast container z-index
+	zIndex: '1000000001', // toast container z-index
+	width: '500px', // toast width
+    titleFontSize: '16px', // toast title font size
+    messageFontSize: '10px', // toast message font size
+    titleFontFamily: 'Verdana', // toast title font family
+	messageFontFamily: 'Arial', // toast message font family
+	
     titleColor: 'white', // toast title color
     messageColor: 'white', // toast message color
     backgroundColor: 'white', // toast background color

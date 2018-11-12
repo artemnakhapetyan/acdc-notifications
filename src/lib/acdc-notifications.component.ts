@@ -90,6 +90,7 @@ export class AcdcNotificationsComponent implements OnInit {
         defaultConfig.toast.success.backgroundColor = defaultConfig.toast.backgroundColor;
       }
     }
+
     return defaultConfig;
   }
 

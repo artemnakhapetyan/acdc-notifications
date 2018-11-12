@@ -27,8 +27,12 @@ export class AcdcToastsDefaultConfig{
   backgroundColor?: string;
   iconsColor?: string;
   addToTop?: boolean;
-  //width?: number;
-  zIndex?: number;
+  width?: string;
+  titleFontSize?: string;
+  messageFontSize?: string;
+  titleFontFamily?: string;
+  messageFontFamily?: string;
+  zIndex?: string;
 }
 
 export class AcdcNotifcationsDefaultConfig{

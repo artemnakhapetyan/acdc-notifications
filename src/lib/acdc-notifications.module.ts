@@ -9,8 +9,12 @@ import { AcdcNotifcationsDefaultConfig } from './acdc-notifications.model';
   imports: [
     CommonModule
   ],
-  declarations: [AcdcNotificationsComponent],
-  exports: [AcdcNotificationsComponent]
+  declarations: [
+    AcdcNotificationsComponent
+  ],
+  exports: [
+    AcdcNotificationsComponent
+  ]
 })
 export class AcdcNotificationsModule { 
   static forRoot(defaultConfig?: AcdcNotifcationsDefaultConfig): ModuleWithProviders {
