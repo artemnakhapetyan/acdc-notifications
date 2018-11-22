@@ -20,6 +20,8 @@ See [Demo](https://angular-mp2pcl.stackblitz.io)
 <br/>
 *12 November 2018* Toast vertical overflow fix. New configs (toast width, font configs like size and font family)
 <br/>
+*22 November 2018* New functionality and configs (toasts opacity, dismiss all toasts). Scroll to latest toast fix
+<br/>
 
 ## Install
 
@@ -44,6 +46,10 @@ const notificationsConfig: AcdcNotifcationsDefaultConfig = {
   toast:{
 	// general properties applied to all toast notification level types (info, error, warn, success)
 	addToTop: true, // new toast goes on the top of existing ones or to the bottom
+	backgroundOpacity: 1, // toasts background opacity (decimal number from 0 to 1).
+    minCntToShowDeleteAllBtn: 2, // toasts minimal count to show delete all toasts button
+    deleteAllBtnBackgroundColor: 'red', // delete all toasts button background color ( pass value 'none' if no background needed)
+    deleteAllBtnIconColor: 'white', // delete all toasts button icon color
 	zIndex: '1000000001', // toast container z-index
 	width: '500px', // toast width
     titleFontSize: '16px', // toast title font size

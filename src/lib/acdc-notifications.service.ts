@@ -1,9 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 
-import { AcdcToast, AcdcNotifcationsDefaultConfig, AcdcNotificationLevel, AcdcNotificationState, AcdcToastConfig } from './acdc-notifications.model';
+import { 
+  AcdcToast, 
+  AcdcNotifcationsDefaultConfig, 
+  AcdcNotificationLevel, 
+  AcdcNotificationState, 
+  AcdcToastConfig 
+} from './acdc-notifications.model';
 
 @Injectable()
 export class AcdcNotificationsService {
+
+  @Output() addToastEmitter: EventEmitter<AcdcToast> = new EventEmitter();
 
   private counter: number = 0;
 
@@ -35,8 +43,7 @@ export class AcdcNotificationsService {
     }else{
       this.toasts.push(newToast);
     }
-
-    // should scroll toasts container to bottom if new toast is being added to bottom
+    this.addToastEmitter.emit(newToast);
 
     if(timeout){
       setTimeout( () => {
@@ -48,11 +55,7 @@ export class AcdcNotificationsService {
 
   }
 
-  getToastsRef(){
-    return this.toasts;
-  }
-
-  private toastParamsError(){
+  private toastParamsError(): string{
     return this.addToast(
       'Error',
       'Notifications Component Error',
@@ -60,14 +63,16 @@ export class AcdcNotificationsService {
     );
   }
 
+  getToastsRef(){
+    return this.toasts;
+  }
+
   toast(config: AcdcToastConfig): string{
     if(!config){
-      this.toastParamsError();
-      return;
+      return this.toastParamsError();
     }
     if(!config.message){
-      this.toastParamsError();
-      return;
+      return this.toastParamsError();
     }
     return this.addToast(
       config.notificationLevel,
