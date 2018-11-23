@@ -47,6 +47,10 @@ export class AcdcNotificationsComponent implements OnInit {
       
     });
 
+    this.acdcNotificationsService.updateDefaultConfigEmitter.subscribe( defaultConfig => {
+      this.acdcConfig = this.setEmptyConfigDefaults(defaultConfig); 
+    });
+
   }
 
   dismissToast(id: string){

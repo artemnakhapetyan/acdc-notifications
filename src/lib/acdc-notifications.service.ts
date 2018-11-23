@@ -13,6 +13,8 @@ export class AcdcNotificationsService {
 
   @Output() addToastEmitter: EventEmitter<AcdcToast> = new EventEmitter();
 
+  @Output() updateDefaultConfigEmitter: EventEmitter<AcdcNotifcationsDefaultConfig> = new EventEmitter();
+
   private counter: number = 0;
 
   private toasts: AcdcToast[] = [];
@@ -67,27 +69,42 @@ export class AcdcNotificationsService {
     return this.toasts;
   }
 
-  toast(config: AcdcToastConfig): string{
-    if(!config){
-      return this.toastParamsError();
+  updateDefaultConfig(defaultConfig: AcdcNotifcationsDefaultConfig) {
+    this.acdcConfig = defaultConfig;
+    this.updateDefaultConfigEmitter.emit(defaultConfig);
+  }
+
+  toast(...params: any[]): string{
+
+    if(params && params.length){
+      
+      if(typeof params[0] === 'string'){
+        return this.addToast(
+          params[2],
+          params[1],
+          params[0],
+          params[3]
+        );
+      }else{
+        let config: AcdcToastConfig = params[0] as AcdcToastConfig;
+        return this.addToast(
+          config.notificationLevel,
+          config.title,
+          config.message,
+          config.timeout
+        );
+      }
+
     }
-    if(!config.message){
-      return this.toastParamsError();
-    }
-    return this.addToast(
-      config.notificationLevel,
-      config.title,
-      config.message,
-      config.timeout
-    );
+
+    return this.toastParamsError();
+
   }
   
   deleteAllToasts(){
-
     this.toasts.forEach( toast => {
       this.deleteToast(toast.id);
     });
-
   }
 
   deleteToast(id: string){

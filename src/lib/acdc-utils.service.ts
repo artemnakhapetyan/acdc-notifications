@@ -34,7 +34,7 @@ export class AcdcUtilsService {
         let convertedValues = [(c>>16)&255, (c>>8)&255, c&255].join(',');
         return `rgba(${convertedValues},${opacityAlpha})`;
     }
-    throw new Error('Bad Hex Color');
+    return;
   }
 
   private namedColor2Rgba(color: string, opacityAlpha: number): string{
@@ -42,7 +42,7 @@ export class AcdcUtilsService {
       let colorsEnumRec: NamedColors = NamedColors[color];
       return this.hexColor2Rgba(colorsEnumRec.toString(), opacityAlpha);
     }
-    throw new Error('Bad Named Color');
+    return;
   }
 
   private rgbColor2Rgba(color: string, opacityAlpha: number): string{
@@ -62,7 +62,7 @@ export class AcdcUtilsService {
     }else if(this.isRgbaColor(color)){
       return color;
     }else{
-      throw new Error('Color not supported.');
+      return null;
     }
   }
 

@@ -22,6 +22,8 @@ See [Demo](https://angular-mp2pcl.stackblitz.io)
 <br/>
 *22 November 2018* New functionality and configs (toasts opacity, dismiss all toasts). Scroll to latest toast fix
 <br/>
+*24 November 2018* New functionality (dinamically update notifications config, toast method overload with simple params. 
+<br/>
 
 ## Install
 
@@ -124,6 +126,10 @@ anyMethod(){
 		notificationLevel: 'Warn'
 	});
 
+	// simple params example
+	this.acdcNotificationsService.toast('Message text...', 'Title text', 'Info', 3000);
+
+	// json config params example
 	this.acdcNotificationsService.toast({
 		title: 'Info', 
 		message: 'Async call started.', 
@@ -155,7 +161,7 @@ anyMethod(){
 /* returns toast uniq id */
 const id: string = this.acdcNotificationsService.toast({
 	/* nullable, if not passed toast will appear without header */
-	title: 'Info', 
+	title: 'Info title', 
 	/* not null, main message text */
 	message: 'Async call started.',
 	/* nullable (toast won't dissapear automaticaly). If positive timeout value applied toast will dissapear automaticaly when time elapsed (milliseconds) */
@@ -164,11 +170,28 @@ const id: string = this.acdcNotificationsService.toast({
 	notificationLevel: 'Info' 
 }); 
 
-// 2. deleteToast - deletes toast by id
+// 2. toast - creates new toast (overload with simple params)
+/* returns toast uniq id */
+const id: string = this.acdcNotificationsService.toast(
+	/* not null, main message text */
+	'Async call started.',
+	/* nullable, if not passed toast will appear without header */
+	'Info title', 
+	/* nullable (default Info), notification level values - 'Info' (default), 'Success', 'Warn', 'Error'. Toast colors and icons are changed accordingly */
+	'Info',
+	/* nullable (toast won't dissapear automaticaly). If positive timeout value applied toast will dissapear automaticaly when time elapsed (milliseconds) */
+	3000
+});
+
+// 3. deleteToast - deletes toast by id
 this.acdcNotificationsService.deleteToast(id); 
 
-// 3. deleteAllToasts - deletes all toasts
+// 4. deleteAllToasts - deletes all toasts
 this.acdcNotificationsService.deleteAllToasts();
+
+// 5. updateDefaultConfig - dynamically update default config
+const notificationsConfig: AcdcNotifcationsDefaultConfig = {...} as AcdcNotifcationsDefaultConfig;
+this.acdcNotificationsService.updateDefaultConfig(notificationsConfig);
 
 ```
 
