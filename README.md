@@ -10,20 +10,17 @@ See [Demo](https://angular-mp2pcl.stackblitz.io)
 
 ## Latest updates
 
-*7 November 2018* Initial version
+*26 November 2018* New functionality (toasts alignment, toasts create/dismiss animations)
 <br/>
-*8 November 2018* Toasts container horizontal scroll fix
-<br/>
-*8 November 2018* Initial config (colors for toast elements can be configured)
-<br/>
-*9 November 2018* Tested with angular 7 version. New configs (addToTop, zIndex)
-<br/>
-*12 November 2018* Toast vertical overflow fix. New configs (toast width, font configs like size and font family)
+*24 November 2018* New functionality (dinamically update notifications config, toast method overload with simple params)
 <br/>
 *22 November 2018* New functionality and configs (toasts opacity, dismiss all toasts). Scroll to latest toast fix
 <br/>
-*24 November 2018* New functionality (dinamically update notifications config, toast method overload with simple params. 
+*12 November 2018* Toast vertical overflow fix. New configs (toast width, font configs like size and font family)
 <br/>
+*9 November 2018* Tested with angular 7 version. New configs (addToTop, zIndex)
+<br/>
+
 
 ## Install
 
@@ -37,7 +34,12 @@ npm install acdc-notifications --save
 ### 2. Import acdc notifications module in your project's root module app.module.ts:
 ```ts
 
-import { AcdcNotificationsModule, AcdcNotifcationsDefaultConfig } from 'acdc-notifications';
+import { 
+	AcdcNotificationsModule, 
+	AcdcHorizontalAlignment,
+  	AcdcVerticalAlignment,
+	AcdcNotifcationsDefaultConfig 
+} from 'acdc-notifications';
 
 // some code
 
@@ -47,22 +49,49 @@ const notificationsConfig: AcdcNotifcationsDefaultConfig = {
   // toast configs go here (planning to add in package other notification types)
   toast:{
 	// general properties applied to all toast notification level types (info, error, warn, success)
-	addToTop: true, // new toast goes on the top of existing ones or to the bottom
-	backgroundOpacity: 1, // toasts background opacity (decimal number from 0 to 1).
-    minCntToShowDeleteAllBtn: 2, // toasts minimal count to show delete all toasts button
-    deleteAllBtnBackgroundColor: 'red', // delete all toasts button background color ( pass value 'none' if no background needed)
-    deleteAllBtnIconColor: 'white', // delete all toasts button icon color
-	zIndex: '1000000001', // toast container z-index
-	width: '500px', // toast width
-    titleFontSize: '16px', // toast title font size
-    messageFontSize: '10px', // toast message font size
-    titleFontFamily: 'Verdana', // toast title font family
-	messageFontFamily: 'Arial', // toast message font family
+
+	// new toast goes on the top of existing ones or to the bottom
+	addToTop: true, 
+	// toasts horizontal alignment (Left, Center, Right)
+	horizontalAlignment: AcdcHorizontalAlignment.Right, 
+	// toasts vertical alignment (Top, Bottom)
+	verticalAlignment: AcdcVerticalAlignment.Top, 
+	// comma separated css animation names. Predefined or custom css animation names can be used
+	// Predefined animations:
+	// acdcFadeOutAnimation, acdcFadeInAnimation, acdcSlideInLeftAnimation, acdcSlideOutRightAnimation
+	// acdcSlideOutLeftAnimation, acdcSlideInRightAnimation, acdcSlideInTopAnimation, acdcSlideInBottomAnimation
+	// acdcSlideOutTopAnimation, acdcSlideOutBottomAnimation
+	createAnimations: 'acdcFadeInAnimation, acdcSlideInTopAnimation', 
+	dismissAnimations: 'acdcFadeOutAnimation, acdcSlideOutRightAnimation', 
+	// toasts background opacity (decimal number from 0 to 1).
+	backgroundOpacity: 1,
+	// toasts minimal count to show delete all toasts button
+	minCntToShowDeleteAllBtn: 2, 
+	// delete all toasts button background color ( pass value 'none' if no background needed)
+	deleteAllBtnBackgroundColor: 'red', 
+	// delete all toasts button icon color
+	deleteAllBtnIconColor: 'white', 
+	// toast container z-index
+	zIndex: '1000000001', 
+	// toast width
+	width: '500px', 
+	// toast title font size
+	titleFontSize: '16px', 
+	// toast message font size
+	messageFontSize: '10px', 
+	// toast title font family
+	titleFontFamily: 'Verdana', 
+	// toast message font family
+	messageFontFamily: 'Arial', 
 	
-    titleColor: 'white', // toast title color
-    messageColor: 'white', // toast message color
-    backgroundColor: 'white', // toast background color
-	iconsColor: 'white', // toast icons color
+	// toast title color
+	titleColor: 'white', 
+	// toast message color
+	messageColor: 'white', 
+	// toast background color
+	backgroundColor: 'white', 
+	// toast icons color
+	iconsColor: 'white', 
 	// properties specific to notification level (have higher priority than general properties)
     warn: {
       titleColor: 'white',

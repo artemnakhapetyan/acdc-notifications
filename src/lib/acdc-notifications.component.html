@@ -1,6 +1,11 @@
 <div class="acdc-toasts-container" 
      [style.z-index]="acdcConfig.toast.zIndex? acdcConfig.toast.zIndex: 1000000000"
      [style.width]="acdcConfig.toast.width? acdcConfig.toast.width: '320px'"
+     [class.acdc-toasts-container-left]="acdcConfig.toast.horizontalAlignment==='Left'"
+     [class.acdc-toasts-container-right]="acdcConfig.toast.horizontalAlignment==='Right'"
+     [class.acdc-toasts-container-hcenter]="acdcConfig.toast.horizontalAlignment==='Center'"
+     [class.acdc-toasts-container-top]="acdcConfig.toast.verticalAlignment==='Top'"
+     [class.acdc-toasts-container-bottom]="acdcConfig.toast.verticalAlignment==='Bottom'"
      *ngIf="toasts && toasts.length">
   
   <div #toastsDiv
@@ -9,9 +14,8 @@
         
           <!-- warn toast -->
           <div *ngIf="toast.notificationLevel==='Warn'"
-              class="acdc-toast acdc-toast-warn"
-              [class.acdc-show-with-animation]="toast.notificationState==='Created'"
-              [class.acdc-hide-with-animation]="toast.notificationState==='Dismissed'"
+              class="acdc-toast acdc-toast-warn acdc-animation"
+              [style.animation-name]="toast.notificationState==='Created'? acdcConfig.toast.createAnimations: (toast.notificationState==='Dismissed'? acdcConfig.toast.dismissAnimations: '')"
               [class.acdc-mini-toast]="!toast.title"
               [style.background-color]="acdcConfig.toast.warn.backgroundColor">
             <div class="acdc-toast-notification-level-div">
@@ -51,9 +55,8 @@
 
           <!-- info toast -->
           <div *ngIf="toast.notificationLevel==='Info'"
-              class="acdc-toast acdc-toast-info"
-              [class.acdc-show-with-animation]="toast.notificationState==='Created'"
-              [class.acdc-hide-with-animation]="toast.notificationState==='Dismissed'"
+              class="acdc-toast acdc-toast-info acdc-animation"
+              [style.animation-name]="toast.notificationState==='Created'? acdcConfig.toast.createAnimations: (toast.notificationState==='Dismissed'? acdcConfig.toast.dismissAnimations: '')"
               [class.acdc-mini-toast]="!toast.title"
               [style.background-color]="acdcConfig.toast.info.backgroundColor">
             <div class="acdc-toast-notification-level-div">
@@ -93,9 +96,8 @@
 
           <!-- success toast -->
           <div *ngIf="toast.notificationLevel==='Success'"
-              class="acdc-toast acdc-toast-success"
-              [class.acdc-show-with-animation]="toast.notificationState==='Created'"
-              [class.acdc-hide-with-animation]="toast.notificationState==='Dismissed'"
+              class="acdc-toast acdc-toast-success acdc-animation"
+              [style.animation-name]="toast.notificationState==='Created'? acdcConfig.toast.createAnimations: (toast.notificationState==='Dismissed'? acdcConfig.toast.dismissAnimations: '')"
               [class.acdc-mini-toast]="!toast.title"
               [style.background-color]="acdcConfig.toast.success.backgroundColor">
             <div class="acdc-toast-notification-level-div">
@@ -133,9 +135,8 @@
 
           <!-- error toast -->
           <div *ngIf="toast.notificationLevel==='Error'"
-              class="acdc-toast acdc-toast-error"
-              [class.acdc-show-with-animation]="toast.notificationState==='Created'"
-              [class.acdc-hide-with-animation]="toast.notificationState==='Dismissed'"
+              class="acdc-toast acdc-toast-error acdc-animation"
+              [style.animation-name]="toast.notificationState==='Created'? acdcConfig.toast.createAnimations: (toast.notificationState==='Dismissed'? acdcConfig.toast.dismissAnimations: '')"
               [class.acdc-mini-toast]="!toast.title"
               [style.background-color]="acdcConfig.toast.error.backgroundColor">
             <div class="acdc-toast-notification-level-div">
@@ -174,11 +175,10 @@
       </ng-container>
   </div>
 
-  <div *ngIf="toasts && toasts.length && acdcConfig.toast.minCntToShowDeleteAllBtn"
+  <div *ngIf="toasts && toasts.length && acdcConfig.toast.minCntToShowDeleteAllBtn && toasts.length>=acdcConfig.toast.minCntToShowDeleteAllBtn"
       class="acdc-toasts-toolbar-div">
 
-    <div *ngIf="toasts.length>=acdcConfig.toast.minCntToShowDeleteAllBtn" 
-        (click)="dismissAllToasts()"
+    <div (click)="dismissAllToasts()"
         class="acdc-toasts-toolbar-btn"
         [style.background-color]="acdcConfig.toast.deleteAllBtnBackgroundColor"
         [style.box-shadow]="acdcConfig.toast.deleteAllBtnBackgroundColor==='none'? '': '0px 5px 10px grey'">

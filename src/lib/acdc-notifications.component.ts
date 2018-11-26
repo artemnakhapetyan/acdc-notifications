@@ -4,7 +4,9 @@ import {
   AcdcToast, 
   AcdcNotifcationsDefaultConfig, 
   AcdcToastsDefaultConfig, 
-  AcdcToastNotifcationLevelConfig 
+  AcdcToastNotifcationLevelConfig,
+  AcdcVerticalAlignment,
+  AcdcHorizontalAlignment
 } from './acdc-notifications.model';
 
 import { AcdcUtilsService } from './acdc-utils.service'; 
@@ -184,6 +186,20 @@ export class AcdcNotificationsComponent implements OnInit {
       if(defaultConfig.toast.deleteAllBtnBackgroundColor!=='transparent' && defaultConfig.toast.deleteAllBtnBackgroundColor!=='none'){
         defaultConfig.toast.deleteAllBtnBackgroundColor = this.acdcUtils.color2Rgba(defaultConfig.toast.deleteAllBtnBackgroundColor, defaultConfig.toast.backgroundOpacity);
       }
+    }
+
+    if(!defaultConfig.toast.verticalAlignment){
+      defaultConfig.toast.verticalAlignment = AcdcVerticalAlignment.Top;
+    }
+    if(!defaultConfig.toast.horizontalAlignment){
+      defaultConfig.toast.horizontalAlignment = AcdcHorizontalAlignment.Right;
+    }
+
+    if(!defaultConfig.toast.createAnimations){
+      defaultConfig.toast.createAnimations = 'acdcFadeInAnimation';
+    }
+    if(!defaultConfig.toast.dismissAnimations){
+      defaultConfig.toast.dismissAnimations = 'acdcFadeOutAnimation';
     }
 
     return defaultConfig;

@@ -10,6 +10,17 @@ export enum AcdcNotificationState {
   Dismissed = "Dismissed"
 }
 
+export enum AcdcHorizontalAlignment {
+  Left = "Left",
+  Center = "Center",
+  Right = "Right"
+}
+
+export enum AcdcVerticalAlignment {
+  Top = "Top",
+  Bottom = "Bottom"
+}
+
 export class AcdcToastNotifcationLevelConfig{
   titleColor?: string;
   messageColor?: string;
@@ -37,6 +48,10 @@ export class AcdcToastsDefaultConfig{
   titleFontFamily?: string;
   messageFontFamily?: string;
   zIndex?: string;
+  horizontalAlignment?: AcdcHorizontalAlignment;
+  verticalAlignment?: AcdcVerticalAlignment;
+  createAnimations?: string;
+  dismissAnimations?: string;
 }
 
 export class AcdcNotifcationsDefaultConfig{

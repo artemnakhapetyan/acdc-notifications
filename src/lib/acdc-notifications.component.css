@@ -1,4 +1,98 @@
 
+/* animations */
+@keyframes acdcFadeOutAnimation{
+  0%{
+      opacity: 1;
+  }
+  100%{
+      display: none;
+      opacity: 0;
+  }
+}
+@keyframes acdcFadeInAnimation{
+  0%{
+      opacity: 0;
+  }
+  100%{
+      opacity: 1;
+  }
+}
+
+@keyframes acdcSlideInLeftAnimation{
+  0%{
+      transform: translateX(240px);
+  }
+  100%{
+      transform: translateX(0px);
+  }
+}
+@keyframes acdcSlideOutRightAnimation{
+  0%{
+    transform: translateX(0px);
+  }
+  100%{
+    transform: translateX(240px);
+  }
+}
+
+@keyframes acdcSlideOutLeftAnimation{
+  0%{
+      transform: translateX(0px);
+  }
+  100%{
+      transform: translateX(-240px);
+  }
+}
+@keyframes acdcSlideInRightAnimation{
+  0%{
+    transform: translateX(-240px);
+  }
+  100%{
+    transform: translateX(0px);
+  }
+}
+
+@keyframes acdcSlideInTopAnimation{
+  0%{
+      transform: translateY(-100px);
+  }
+  100%{
+      transform: translateX(0px);
+  }
+}
+@keyframes acdcSlideInBottomAnimation{
+  0%{
+    transform: translateY(100px);
+  }
+  100%{
+    transform: translateY(0px);
+  }
+}
+
+@keyframes acdcSlideOutTopAnimation{
+  0%{
+      transform: translateY(0px);
+  }
+  100%{
+      transform: translateY(-100px);
+  }
+}
+@keyframes acdcSlideOutBottomAnimation{
+  0%{
+    transform: translateY(0px);
+  }
+  100%{
+    transform: translateY(100px);
+  }
+}
+
+.acdc-animation{
+  animation-duration: 500ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+
+/* SVG */
 .acdc-svg{
   fill: white;
   width: 16px;
@@ -11,78 +105,32 @@
   height: 24px;
 }
 
-/* animations */
-@keyframes acdcHideToastAnimation{
-  0%{
-      opacity: 1;
-      transform: translateX(60px);
-  }
-  25%{
-    opacity: 0.75;
-    transform: translateX(120px);
-  }
-  50%{
-    opacity: 0.5;
-    transform: translateX(180px);
-  }
-  75%{
-    opacity: 0.25;
-    transform: translateX(240px);
-  }
-  100%{
-      display: none;
-      opacity: 0;
-      transform: translateX(300px);
-  }
-}
-
-.acdc-hide-with-animation{
-  animation-name: acdcHideToastAnimation;
-  animation-duration: 500ms;
-  animation-fill-mode: forwards;
-  animation-timing-function: linear;
-}
-
-@keyframes acdcShowToastAnimation{
-  0%{
-      opacity: 0;
-      transform: translateX(240px);
-  }
-  25%{
-    opacity: 0.25;
-    transform: translateX(180px);
-  }
-  50%{
-    opacity: 0.5;
-    transform: translateX(120px);
-  }
-  75%{
-    opacity: 0.75;
-    transform: translateX(60px);
-  }
-  100%{
-      opacity: 1;
-      transform: translateX(0px);
-  }
-}
-
-.acdc-show-with-animation{
-  animation-name: acdcShowToastAnimation;
-  animation-duration: 500ms;
-  animation-fill-mode: forwards;
-  animation-timing-function: linear;
-}
-
-
+/* Toasts */
 .acdc-toasts-container{
   position: fixed;
-  top: 10px;
-  right: 10px;
   max-height: 500px;
   overflow-y: hidden;
   margin: 0px auto;
   overflow-x: hidden;
   box-sizing: unset;
+}
+.acdc-toasts-container-left{
+  left: 10px;
+}
+.acdc-toasts-container-right{
+  right: 10px;
+}
+.acdc-toasts-container-hcenter{
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+}
+.acdc-toasts-container-top{
+  top: 10px;
+}
+.acdc-toasts-container-bottom{
+  bottom: 10px;
 }
 
 .acdc-toasts-div{
@@ -160,6 +208,7 @@
   border-radius: 3px;
   box-shadow: 0px 5px 15px grey;
   color: white;
+  position: relative;
 }
 
 .acdc-hr{
@@ -174,19 +223,3 @@
   max-height: 60px;
   min-height: 16px;
 }
-
-/*.acdc-toast-success{
-  background-color: seagreen;
-}
-
-.acdc-toast-error{
-  background-color: firebrick;
-}
-
-.acdc-toast-warn{
-  background-color: orange;
-}
-
-.acdc-toast-info{
-  background-color: steelblue;
-}*/

@@ -30,7 +30,7 @@ export class AcdcNotificationsService {
   }
 
   private addToast(notificationLevel: string, title: string, message: string, timeout?: number): string{
-
+      
     const newToast: AcdcToast = {
       id: this.generateId(),
       title: title,
