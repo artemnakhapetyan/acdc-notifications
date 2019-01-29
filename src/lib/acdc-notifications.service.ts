@@ -11,7 +11,9 @@ import {
 @Injectable()
 export class AcdcNotificationsService {
 
-  @Output() addToastEmitter: EventEmitter<AcdcToast> = new EventEmitter();
+  @Output() addToastAction: EventEmitter<AcdcToast> = new EventEmitter();
+
+  @Output() deleteToastAction: EventEmitter<AcdcToast> = new EventEmitter();
 
   @Output() updateDefaultConfigEmitter: EventEmitter<AcdcNotifcationsDefaultConfig> = new EventEmitter();
 
@@ -45,7 +47,7 @@ export class AcdcNotificationsService {
     }else{
       this.toasts.push(newToast);
     }
-    this.addToastEmitter.emit(newToast);
+    this.addToastAction.emit(newToast);
 
     if(timeout){
       setTimeout( () => {
@@ -116,6 +118,8 @@ export class AcdcNotificationsService {
 
     const toast2Dismiss = this.toasts[index];
     toast2Dismiss.notificationState = AcdcNotificationState.Dismissed;
+
+    this.deleteToastAction.emit(toast2Dismiss);
 
     setTimeout( () => {
       index = this.toasts.findIndex( item => item.id === id );

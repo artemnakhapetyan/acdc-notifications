@@ -10,6 +10,8 @@ See [Demo](https://angular-mp2pcl.stackblitz.io)
 
 ## Latest updates
 
+*12 December 2018* New functionality (toast add/delete event emitters)
+<br/>
 *26 November 2018* New functionality (toasts alignment, toasts create/dismiss animations)
 <br/>
 *24 November 2018* New functionality (dinamically update notifications config, toast method overload with simple params)
@@ -147,6 +149,19 @@ import { AcdcNotificationsService } from 'acdc-notifications';
 
 constructor( private acdcNotificationsService: AcdcNotificationsService ) {}
 
+ngOnInit(){
+
+	// you can subscribe to toasts add/remove events and add your custom logic
+    this.acdcNotificationsService.addToastAction.subscribe( toast => {
+      console.log('new toast added, message = ' + toast.message);
+    });
+
+    this.acdcNotificationsService.deleteToastAction.subscribe( toast => {
+      console.log('toast was deleted, message = ' + toast.message);
+	});
+	
+}
+
 anyMethod(){
 
 	const toastId = this.acdcNotificationsService.toast({
@@ -221,6 +236,16 @@ this.acdcNotificationsService.deleteAllToasts();
 // 5. updateDefaultConfig - dynamically update default config
 const notificationsConfig: AcdcNotifcationsDefaultConfig = {...} as AcdcNotifcationsDefaultConfig;
 this.acdcNotificationsService.updateDefaultConfig(notificationsConfig);
+
+// 6. addToastAction - observable (EventEmitter) can be subscribed to listen add toast events
+this.acdcNotificationsService.addToastAction.subscribe( toast => {
+	console.log('new toast added, message = ' + toast.message);
+});
+
+// 7. deleteToastAction - observable (EventEmitter) can be subscribed to listen delete toast events
+this.acdcNotificationsService.deleteToastAction.subscribe( toast => {
+	console.log('toast was deleted, message = ' + toast.message);
+});
 
 ```
 

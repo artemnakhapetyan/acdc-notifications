@@ -37,7 +37,7 @@ export class AcdcNotificationsComponent implements OnInit {
 
     this.toasts = this.acdcNotificationsService.getToastsRef();
 
-    this.acdcNotificationsService.addToastEmitter.subscribe( newToast => {
+    this.acdcNotificationsService.addToastAction.subscribe( newToast => {
 
       setTimeout( () => {
         if(this.acdcConfig.toast.addToTop){
