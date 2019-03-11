@@ -223,3 +223,21 @@
   max-height: 60px;
   min-height: 16px;
 }
+
+/* scroll styles */
+.scroller {
+  scrollbar-color: #999 #eee;
+  scrollbar-width: thin;
+}
+
+.scroller::-webkit-scrollbar {
+  width: 5px;
+}
+
+.scroller::-webkit-scrollbar-track-piece  {
+  background-color: #eee;
+}
+
+.scroller::-webkit-scrollbar-thumb:vertical {
+  background-color: #999;
+}

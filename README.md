@@ -10,6 +10,8 @@ See [Demo](https://angular-mp2pcl.stackblitz.io)
 
 ## Latest updates
 
+*11 March 2019* Scroll styles
+<br/>
 *12 December 2018* New functionality (toast add/delete event emitters)
 <br/>
 *26 November 2018* New functionality (toasts alignment, toasts create/dismiss animations)
