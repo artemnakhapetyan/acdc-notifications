@@ -228,10 +228,12 @@
 .scroller {
   scrollbar-color: #999 #eee;
   scrollbar-width: thin;
+  scrollbar-track-color:red;
 }
 
 .scroller::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
 }
 
 .scroller::-webkit-scrollbar-track-piece  {
@@ -239,5 +241,9 @@
 }
 
 .scroller::-webkit-scrollbar-thumb:vertical {
+  background-color: #999;
+}
+
+.scroller::-webkit-scrollbar-thumb:horizontal {
   background-color: #999;
 }
