@@ -5,11 +5,13 @@ No additional dependecies like bootsrap or material or any other ui libs require
 
 Angular versions support - 2,4,5,6,7+
 
-See [Demo](https://angular-mp2pcl.stackblitz.io)
+See [Demo](https://stackblitz.com/edit/angular-mp2pcl)
 
 
 ## Latest updates
 
+*20 October 2019* Demo link update
+<br/>
 *28 May 2019* Message Scroll Styles
 <br/>
 *11 March 2019* Scroll styles
