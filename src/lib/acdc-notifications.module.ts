@@ -17,12 +17,12 @@ import { AcdcNotifcationsDefaultConfig } from './acdc-notifications.model';
     AcdcNotificationsComponent
   ]
 })
-export class AcdcNotificationsModule { 
-  static forRoot(defaultConfig?: AcdcNotifcationsDefaultConfig): ModuleWithProviders {
+export class AcdcNotificationsModule {
+  static forRoot(defaultConfig?: AcdcNotifcationsDefaultConfig): ModuleWithProviders<AcdcNotificationsModule> {
       return {
         ngModule: AcdcNotificationsModule,
-        providers: [  
-          AcdcNotificationsService, 
+        providers: [
+          AcdcNotificationsService,
           AcdcUtilsService,
           {provide: AcdcNotifcationsDefaultConfig, useValue: defaultConfig}
         ]

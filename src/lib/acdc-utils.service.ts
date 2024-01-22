@@ -6,7 +6,7 @@ import { NamedColors } from './acdc-notifications.model';
 export class AcdcUtilsService {
 
   constructor() { }
-  
+
   private isRgbColor(color: string): boolean{
     return (/^rgb[(](?:\s*0*(?:\d\d?(?:\.\d+)?(?:\s*%)?|\.\d+\s*%|100(?:\.0*)?\s*%|(?:1\d\d|2[0-4]\d|25[0-5])(?:\.\d+)?)\s*(?:,(?![)])|(?=[)]))){3}[)]$/).test(color);
   }
@@ -20,11 +20,12 @@ export class AcdcUtilsService {
   }
 
   private isKnownNamedColor(color: string): boolean{
-    return NamedColors[color]? true: false;
+    let testResult = Object.keys(NamedColors).includes(color);
+    return testResult;
   }
 
   private hexColor2Rgba(color: string, opacityAlpha: number): string{
-    let c;
+    let c: any;
     if(this.isHexColor(color)){
         c = color.substring(1).split('');
         if(c.length== 3){
@@ -34,15 +35,19 @@ export class AcdcUtilsService {
         let convertedValues = [(c>>16)&255, (c>>8)&255, c&255].join(',');
         return `rgba(${convertedValues},${opacityAlpha})`;
     }
-    return;
+    return '';
+  }
+
+  private getValueByKeyForStringEnum(value: string) {
+    return Object.entries(NamedColors).find(([key, val]) => key === value)?.[1];
   }
 
   private namedColor2Rgba(color: string, opacityAlpha: number): string{
     if(this.isKnownNamedColor(color)){
-      let colorsEnumRec: NamedColors = NamedColors[color];
-      return this.hexColor2Rgba(colorsEnumRec.toString(), opacityAlpha);
+      let colorsEnumRec: NamedColors | undefined = this.getValueByKeyForStringEnum(color);
+      return colorsEnumRec? this.hexColor2Rgba(colorsEnumRec.toString(), opacityAlpha): '';
     }
-    return;
+    return '';
   }
 
   private rgbColor2Rgba(color: string, opacityAlpha: number): string{
@@ -62,7 +67,7 @@ export class AcdcUtilsService {
     }else if(this.isRgbaColor(color)){
       return color;
     }else{
-      return null;
+      return '';
     }
   }
 

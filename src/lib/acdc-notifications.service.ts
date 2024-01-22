@@ -32,12 +32,12 @@ export class AcdcNotificationsService {
   }
 
   private addToast(notificationLevel: string, title: string, message: string, timeout?: number): string{
-      
+
     const newToast: AcdcToast = {
       id: this.generateId(),
       title: title,
       message: message,
-      notificationLevel: notificationLevel? AcdcNotificationLevel[notificationLevel]: AcdcNotificationLevel.Info,
+      notificationLevel: notificationLevel? notificationLevel as AcdcNotificationLevel: AcdcNotificationLevel.Info,
       timeout: timeout,
       notificationState: AcdcNotificationState.Created
     };
@@ -90,8 +90,8 @@ export class AcdcNotificationsService {
       }else{
         let config: AcdcToastConfig = params[0] as AcdcToastConfig;
         return this.addToast(
-          config.notificationLevel,
-          config.title,
+          config.notificationLevel? config.notificationLevel: '',
+          config.title? config.title: '',
           config.message,
           config.timeout
         );
