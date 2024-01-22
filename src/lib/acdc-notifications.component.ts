@@ -1,15 +1,17 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
-import { 
-  AcdcToast, 
-  AcdcNotifcationsDefaultConfig, 
-  AcdcToastsDefaultConfig, 
+import {
+  AcdcToast,
+  AcdcNotifcationsDefaultConfig,
+  AcdcToastsDefaultConfig,
   AcdcToastNotifcationLevelConfig,
   AcdcVerticalAlignment,
-  AcdcHorizontalAlignment
+  AcdcHorizontalAlignment,
+  AcdcNotificationLevel,
+  AcdcNotificationState
 } from './acdc-notifications.model';
 
-import { AcdcUtilsService } from './acdc-utils.service'; 
+import { AcdcUtilsService } from './acdc-utils.service';
 import { AcdcNotificationsService } from './acdc-notifications.service';
 
 @Component({
@@ -19,18 +21,27 @@ import { AcdcNotificationsService } from './acdc-notifications.service';
 })
 export class AcdcNotificationsComponent implements OnInit {
 
-  @ViewChild('toastsDiv') private toastsDiv: ElementRef;
+  @ViewChild('toastsDiv')
+  private toastsDiv: ElementRef | undefined;
 
-  toasts: AcdcToast[];
+  toasts: AcdcToast[] = [];
 
   acdcConfig: AcdcNotifcationsDefaultConfig;
 
+  AcdcNotificationLevel = AcdcNotificationLevel;
+
+  AcdcNotificationState = AcdcNotificationState;
+
+  AcdcVerticalAlignment = AcdcVerticalAlignment;
+
+  AcdcHorizontalAlignment = AcdcHorizontalAlignment;
+
   constructor(
-    private acdcNotificationsService: AcdcNotificationsService, 
+    private acdcNotificationsService: AcdcNotificationsService,
     private acdcUtils: AcdcUtilsService,
-    private defaultConfig:AcdcNotifcationsDefaultConfig
+    private defaultConfig: AcdcNotifcationsDefaultConfig
   ) {
-    this.acdcConfig = this.setEmptyConfigDefaults(defaultConfig);  
+    this.acdcConfig = this.setEmptyConfigDefaults(defaultConfig);
   }
 
   ngOnInit() {
@@ -40,17 +51,21 @@ export class AcdcNotificationsComponent implements OnInit {
     this.acdcNotificationsService.addToastAction.subscribe( newToast => {
 
       setTimeout( () => {
-        if(this.acdcConfig.toast.addToTop){
-          this.toastsDiv.nativeElement.scrollTop = 0;
+        if(this.acdcConfig.toast?.addToTop){
+          if(this.toastsDiv) {
+            this.toastsDiv.nativeElement.scrollTop = 0;
+          }
         }else{
-          this.toastsDiv.nativeElement.scrollTop = this.toastsDiv.nativeElement.scrollHeight;
+          if(this.toastsDiv) {
+            this.toastsDiv.nativeElement.scrollTop = this.toastsDiv.nativeElement.scrollHeight;
+          }
         }
       }, 100);
-      
+
     });
 
     this.acdcNotificationsService.updateDefaultConfigEmitter.subscribe( defaultConfig => {
-      this.acdcConfig = this.setEmptyConfigDefaults(defaultConfig); 
+      this.acdcConfig = this.setEmptyConfigDefaults(defaultConfig);
     });
 
   }

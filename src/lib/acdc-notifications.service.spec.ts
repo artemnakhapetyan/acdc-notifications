@@ -1,15 +1,16 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { AcdcNotificationsService } from './acdc-notifications.service';
 
 describe('AcdcNotificationsService', () => {
+  let service: AcdcNotificationsService;
+
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [AcdcNotificationsService]
-    });
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(AcdcNotificationsService);
   });
 
-  it('should be created', inject([AcdcNotificationsService], (service: AcdcNotificationsService) => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
-  }));
+  });
 });
